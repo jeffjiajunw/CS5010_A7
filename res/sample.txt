@@ -1,0 +1,63 @@
+# this sample file runs the commands offered by the IME program on the given sample image.
+
+# we can load images with the "load <path> <name>" command.
+load res/bambi.png bambi
+
+# we can then extract various components using the
+# "[type]-component <src> <dest>" command.
+red-component bambi red-bambi
+green-component bambi green-bambi
+blue-component bambi blue-bambi
+value-component bambi value-bambi
+luma-component bambi luma-bambi
+intensity-component bambi intensity-bambi
+
+# a common operation is extracting the RGB values from an image.
+# instead of using three -component commands, we offer a
+# convenience command, the command:
+# "rgb-split <src> <dest-red> <dest-green> <dest-blue>"
+rgb-split bambi red-bambi green-bambi blue-bambi
+
+# we also offer the command to combine three channels
+# into one color image:
+rgb-combine bambi red-bambi green-bambi blue-bambi
+
+# we can flip images using the "[type]-flip <src> <dest>" command.
+horizontal-flip bambi bambi-flipped-horizontally
+vertical-flip bambi bambi-flipped-vertically
+
+# we can brighten/darken images using the
+# "brighten <src> <dest>" command.
+# a negative increment darkens an image.
+brighten 10 bambi brighter-bambi
+brighten -10 bambi darker-bambi
+
+# we can blur/sharpen images using the following commands
+blur bambi blurred-bambi
+sharpen bambi sharpened-bambi
+
+# we also have the ability to convert images to sepia tone
+sepia bambi sepia-bambi
+
+# we can save all the images we created so far using the
+# "save <path> <name>" command.
+save res/red-bambi.png red-bambi
+save res/green-bambi.png green-bambi
+save res/blue-bambi.png blue-bambi
+save res/value-bambi.png value-bambi
+save res/luma-bambi.png luma-bambi
+save res/intensity-bambi.png intensity-bambi
+save res/bambi-flipped-horizontally.png bambi-flipped-horizontally
+save res/bambi-flipped-vertically.png bambi-flipped-vertically
+save res/brighter-bambi.png brighter-bambi
+save res/darker-bambi.png darker-bambi
+save res/blurred-bambi.png blurred-bambi
+save res/sharpened-bambi.png sharpened-bambi
+save res/sepia-bambi.png sepia-bambi
+
+# if a user wants to quit, they can type one of: "q" or "quit"
+# (case-insensitive).
+
+# finally, we can run other script files using the command
+# "run <script-path>".
+# and we can write comments (like this one) using the "#" symbol.
