@@ -177,7 +177,6 @@ public class ReadOnlyImageImpl implements ReadOnlyImage {
 
     @Override
     public IReadOnlyImageBuilder setPixel(int i, int j, Color color) {
-
       if (imagePixels[i][j] == null) {
 
         setPixelCount += 1;
@@ -185,6 +184,16 @@ public class ReadOnlyImageImpl implements ReadOnlyImage {
 
       imagePixels[i][j] = color;
       return this;
+    }
+
+    public int getPixel(int i, int j) {
+
+      Color currColor = imagePixels[i][j];
+
+      int r = currColor.getRed();
+
+
+      return r;
     }
 
     @Override

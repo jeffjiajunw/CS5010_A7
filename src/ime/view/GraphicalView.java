@@ -19,6 +19,7 @@ import ime.controller.ViewController;
 import ime.model.image.ReadOnlyImage;
 import ime.model.operations.Blur;
 import ime.model.operations.ColorCorrect;
+import ime.model.operations.Dither;
 import ime.model.operations.ExtractBlueComponent;
 import ime.model.operations.ExtractGreenComponent;
 import ime.model.operations.ExtractLumaComponent;
@@ -57,6 +58,7 @@ public class GraphicalView extends JFrame implements View {
   private final JButton compressButton;
   private final JButton colorCorrectButton;
   private final JButton levelsAdjustButton;
+  private final JButton ditherButton;
 
   // Controller logic fields
   private ViewController controller;
@@ -106,6 +108,7 @@ public class GraphicalView extends JFrame implements View {
     compressButton = new JButton("compress");
     colorCorrectButton = new JButton("color correct");
     levelsAdjustButton = new JButton("levels adjust");
+    ditherButton = new JButton("dither");
 
     JButton[] buttons =
             new JButton[]{
@@ -114,6 +117,7 @@ public class GraphicalView extends JFrame implements View {
               horizontalFlipButton, verticalFlipButton,
               blurButton, sharpenButton, compressButton,
               colorCorrectButton, levelsAdjustButton,
+              ditherButton
             };
 
     JToolBar toolBar = addToToolBar(buttons);
@@ -198,6 +202,8 @@ public class GraphicalView extends JFrame implements View {
             this,
             "Enter b, m, and w",
             SubmitNumberListenerType.LEVELS_ADJUST));
+    setButtonListener(ditherButton,
+            new SplitViewListener(controller, new Dither()));
   }
 
   private JToolBar addToToolBar(JButton[] buttons) {

@@ -7,6 +7,7 @@ import ime.controller.supplier.CompressCommandSupplier;
 import ime.controller.supplier.LevelsCommandSupplier;
 import ime.controller.supplier.PreviewSplitMapCommandSupplier;
 import ime.model.operations.Blur;
+import ime.model.operations.Dither;
 import ime.model.operations.Sharpen;
 import ime.model.operations.ColorCorrect;
 import ime.model.operations.GenerateHistogram;
@@ -47,6 +48,7 @@ public class ExtendedTextController extends TextController {
     commands.put("histogram", new MapCommand.MapCommandSupplier(GenerateHistogram::new));
     commands.put("color-correct", new PreviewSplitMapCommandSupplier(ColorCorrect::new));
     commands.put("levels", new LevelsCommandSupplier());
+    commands.put("dither", new MapCommand.MapCommandSupplier(Dither::new));
 
     // replace some old commands with new and improved split preview options
     commands.put("run", new ExtendedRunCommand.Supplier());
