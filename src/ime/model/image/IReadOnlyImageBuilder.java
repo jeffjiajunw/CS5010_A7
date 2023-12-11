@@ -23,6 +23,15 @@ public interface IReadOnlyImageBuilder {
   IReadOnlyImageBuilder setPixel(int i, int j, Color color) throws IllegalArgumentException;
 
   /**
+   * Get this builder's pixel of specified value.
+   *
+   * @param i     the ith row of the pixel.
+   * @param j     the jth column of the pixel.
+   * @throws IllegalArgumentException if position are invalid for this builder.
+   */
+  int getPixel(int i, int j) throws IllegalArgumentException;
+
+  /**
    * Complete building the ReadOnlyImage object.
    *
    * @return ReadOnlyImage This is the new immutable Image object.

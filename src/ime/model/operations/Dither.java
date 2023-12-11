@@ -5,6 +5,10 @@ import ime.model.color.ColorImpl;
 import ime.model.image.ReadOnlyImage;
 import ime.model.image.ReadOnlyImageImpl;
 
+/**
+ * Dither the image using intensity value.
+ */
+
 public class Dither extends ExtractIntensityComponent implements ImageOperation {
   int height;
   int width;

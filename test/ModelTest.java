@@ -12,6 +12,7 @@ import ime.model.image.ReadOnlyImageImpl;
 import ime.model.operations.Blur;
 import ime.model.operations.BrightenDarken;
 import ime.model.operations.ColorCorrect;
+import ime.model.operations.Dither;
 import ime.model.operations.ExtractBlueComponent;
 import ime.model.operations.ExtractGreenComponent;
 import ime.model.operations.ExtractIntensityComponent;
@@ -1914,5 +1915,50 @@ public class ModelTest {
   public void testOverflow() {
     // RGB values should be truncated to their first 8 bits
     assertEquals(0xFF, Colors.redFrom(Colors.fromRgb(0xFFF, 0xFF, 0xFF)));
+  }
+
+  @Test
+  public void testDither() {
+
+    ReadOnlyImage image = (new ReadOnlyImageImpl.ReadOnlyImageBuilder(2, 2))
+            .setPixel(0, 0, new ColorImpl(2, 2, 2))
+            .setPixel(0, 1, new ColorImpl(5, 5, 5))
+            .setPixel(1, 0, new ColorImpl(1, 1, 1))
+            .setPixel(1, 1, new ColorImpl(19, 19, 19))
+            .build();
+
+    ReadOnlyImage resImage = (new Dither()).apply(image);
+
+    ReadOnlyImage expectedImage =
+            (new ReadOnlyImageImpl.ReadOnlyImageBuilder(2, 2))
+                    .setPixel(0, 0, new ColorImpl(0, 0, 0))
+                    .setPixel(0, 1, new ColorImpl(0, 0, 0))
+                    .setPixel(1, 0, new ColorImpl(0, 0, 0))
+                    .setPixel(1, 1, new ColorImpl(0, 0, 0))
+                    .build();
+
+    for (int i = 0; i < image.getHeight(); i += 1) {
+
+      for (int j = 0; j < image.getWidth(); j += 1) {
+
+        assertEquals(
+                expectedImage.getColor(i, j).getRed(),
+                resImage.getColor(i, j).getRed()
+        );
+
+        assertEquals(
+                expectedImage.getColor(i, j).getGreen(),
+                resImage.getColor(i, j).getGreen()
+        );
+
+        assertEquals(
+                expectedImage.getColor(i, j).getBlue(),
+                resImage.getColor(i, j).getBlue()
+        );
+
+      }
+
+    }
+
   }
 }

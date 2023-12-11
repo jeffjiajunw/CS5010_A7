@@ -1,6 +1,9 @@
 # CS5010 IME: Working with other code
 
 ### Code overview
+- Dither an image implementation: Y
+- Script command to dither an image: Y
+- Dither from GUI: Y
 
 ### Design Overview
 

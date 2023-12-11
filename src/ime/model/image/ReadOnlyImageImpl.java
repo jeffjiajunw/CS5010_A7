@@ -186,6 +186,7 @@ public class ReadOnlyImageImpl implements ReadOnlyImage {
       return this;
     }
 
+    @Override
     public int getPixel(int i, int j) {
 
       Color currColor = imagePixels[i][j];
